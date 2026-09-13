@@ -1,0 +1,1136 @@
+<!DOCTYPE html><html class="h-full" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SYAUQI COMPUTER - Fotocopy, Digital Printing, Kursus &amp; Jaringan</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              teal: '#008899',
+              'teal-light': '#2FA4A9',
+              'teal-dark': '#00626e',
+              orange: '#FF7A30',
+              'orange-light': '#ff975a',
+            },
+            glass: {
+              light: 'rgba(255, 255, 255, 0.75)',
+              border: 'rgba(255, 255, 255, 0.85)',
+              card: 'rgba(255, 255, 255, 0.65)',
+              chip: 'rgba(255, 255, 255, 0.7)',
+            }
+          },
+          boxShadow: {
+            'glass': '0 20px 40px -15px rgba(0, 136, 153, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.9) inset',
+            'glass-lg': '0 25px 50px -12px rgba(255, 122, 48, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.95) inset',
+            'glow-teal': '0 0 30px rgba(47, 164, 169, 0.35)',
+            'glow-orange': '0 0 30px rgba(255, 122, 48, 0.35)',
+            'pill': '0 10px 25px -5px rgba(0, 136, 153, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background: radial-gradient(circle at 85% 15%, rgba(255, 237, 226, 0.8) 0%, rgba(224, 246, 248, 0.8) 40%, #f0f7f8 100%);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 16px 36px -10px rgba(0, 136, 153, 0.12), 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 24px -6px rgba(0, 136, 153, 0.08), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -8px rgba(0, 136, 153, 0.18), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    }
+
+    .brand-title-gradient {
+      background: linear-gradient(135deg, #00626e 0%, #008899 38%, #ff7a30 72%, #e55a0f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 12px rgba(0, 136, 153, 0.25));
+    }
+
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 136, 153, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 122, 48, 0.05) 1px, transparent 1px);
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.05em;
+      background-color: #ff7a30;
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      0%, 45% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Vertical Slider Container */
+    #slides-track {
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .slide-section {
+      height: 100vh;
+      width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Staggered entrance animations per slide */
+    .anim-slide-left,
+    .anim-slide-up,
+    .anim-scale {
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide-section:not(.section-active) .anim-slide-left {
+      opacity: 0;
+      transform: translateX(-35px);
+    }
+    .slide-section:not(.section-active) .anim-slide-up {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .slide-section:not(.section-active) .anim-scale {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+
+    .slide-section.section-active .anim-slide-left,
+    .slide-section.section-active .anim-slide-up,
+    .slide-section.section-active .anim-scale {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0, 136, 153, 0.35);
+      border-radius: 9999px;
+    }
+  </style>
+<style id="mobile-scroll-override">
+@media (max-width: 1024px) {
+  html, body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+  }
+  #slider-wrapper {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #slides-track {
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 3rem !important;
+  }
+  .slide-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 3rem 1rem !important;
+    margin-bottom: 3.5rem !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .slide-section[data-index="0"] {
+    padding-top: 7rem !important;
+  }
+  .slide-section > div {
+    max-height: none !important;
+    height: auto !important;
+  }
+  .anim-slide-left,
+  .anim-slide-up,
+  .anim-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .grid {
+    gap: 1.25rem !important;
+  }
+  .glass-card, .glass-panel {
+    margin-bottom: 0.75rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .slide-section[data-index="0"] {
+    padding-top: 7.5rem !important;
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+</style></head>
+<body class="font-sans text-slate-700 bg-grid relative antialiased flex flex-col justify-between h-auto overflow-y-auto">
+<!-- Ambient Glowing Blobs in Background -->
+<div class="fixed top-[-10%] right-[10%] w-[520px] h-[520px] rounded-full bg-cyan-200/40 blur-[130px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[5%] w-[600px] h-[600px] rounded-full bg-orange-200/35 blur-[140px] pointer-events-none -z-10"></div>
+<div class="fixed top-[45%] left-[30%] w-[380px] h-[380px] rounded-full bg-teal-100/50 blur-[90px] pointer-events-none -z-10"></div>
+<!-- FIXED TOP NAVIGATION BAR -->
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-3.5 flex items-center justify-between pointer-events-none">
+<div class="max-w-7xl w-full mx-auto flex items-center justify-between pointer-events-auto">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 px-3.5 py-2 rounded-2xl glass-panel group transition-transform active:scale-95 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="goToSlide(0)">
+<div class="w-10 h-10 rounded-xl bg-white p-1 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Syauqi Computer Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvyXSc_YA4nG-2zjeXz6bXucsr9ahPzuBFATdjWRMMxqHtvgi0Of0XAwWRh6tThf_fi_QbqLDIi5KiT5SDontaqXmTsDMpLeUSwT64IBFSvX-aB_2aK8Ay0UHD900fJL-7_PPM8y0q-PnSAVxx5ENZz3xyur9lhIN_iDwVrxXlg4fl-dgTAisT6tuZLj3X7Mi0wzOd906-dBNpR9vVU5Nnw2OqcaQ5MmmgkP2gQJJJU7-VKZ-oU_0tgEcRuKAa7BCwZq0">
+</div>
+<div class="flex flex-col">
+<span class="font-display font-extrabold text-sm tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+            SYAUQI <span class="text-[#FF7A30]">COMPUTER</span>
+</span>
+<span class="text-[10px] tracking-tight text-slate-500 font-medium">Solusi Digital, Cetak &amp; Edukasi</span>
+</div>
+</a>
+<!-- Navigation Pill Menu (Beranda active initially) -->
+<nav class="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full glass-panel shadow-glass" id="navbar-menu">
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 bg-[#008899] text-white shadow-sm" data-slide="0" onclick="goToSlide(0)">
+          Beranda
+        </button>
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60" data-slide="1" onclick="goToSlide(1)">
+          Tentang Kami
+        </button>
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60" data-slide="2" onclick="goToSlide(2)">
+          Layanan Kami
+        </button>
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60" data-slide="3" onclick="goToSlide(3)">
+          Kursus &amp; Edukasi
+        </button>
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60" data-slide="4" onclick="goToSlide(4)">
+          Portofolio &amp; Harga
+        </button>
+<button class="nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60" data-slide="5" onclick="goToSlide(5)">
+          Kontak &amp; Lokasi
+        </button>
+</nav>
+<!-- Right Pill: Availability status & Quick Action -->
+<div class="flex items-center gap-3">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-emerald-700">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">Buka / Layanan Aktif</span>
+</div>
+<a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#008899] to-[#FF7A30] text-white font-medium text-xs flex items-center gap-2 shadow-pill hover:shadow-orange-400/40 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" aria-hidden="true" class="lucide lucide-message-circle w-3.5 h-3.5"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
+<span class="">WhatsApp</span>
+</a>
+</div>
+</div>
+</header>
+<!-- VERTICAL SLIDE INDICATOR (RIGHT SIDE) -->
+<aside class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 glass-panel py-3.5 px-2 rounded-full shadow-glass" id="indicators-container">
+<button class="indicator-dot w-2.5 h-2.5 rounded-full transition-all duration-300 bg-[#008899] scale-125 cursor-pointer" data-slide="0" onclick="goToSlide(0)" title="Beranda"></button>
+<button class="indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer" data-slide="1" onclick="goToSlide(1)" title="Tentang Kami"></button>
+<button class="indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer" data-slide="2" onclick="goToSlide(2)" title="Layanan"></button>
+<button class="indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer" data-slide="3" onclick="goToSlide(3)" title="Kursus Komputer"></button>
+<button class="indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer" data-slide="4" onclick="goToSlide(4)" title="Portofolio &amp; Harga"></button>
+<button class="indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer" data-slide="5" onclick="goToSlide(5)" title="Kontak &amp; Lokasi"></button>
+</aside>
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="relative w-full h-screen overflow-hidden" id="slider-wrapper">
+<!-- SLIDES TRACK (Defaults to 0 translateY for Beranda) -->
+<div class="w-full flex flex-col" id="slides-track" style="transform: translateY(0vh);">
+<!-- ============================================== -->
+<!-- SLIDE 1: BERANDA (HOME / HERO SYAUQI COMPUTER) -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16 section-active" data-index="0">
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-h-[820px]">
+<!-- Left Hero Content -->
+<div class="lg:col-span-7 flex flex-col justify-center space-y-5 z-10">
+<!-- Badge -->
+<div class="anim-slide-up flex items-center gap-2">
+<div class="px-3.5 py-1 rounded-full glass-panel text-[11px] font-bold text-[#008899] tracking-wider uppercase inline-flex items-center gap-2 border border-teal-200">
+<span class="w-2 h-2 rounded-full bg-[#FF7A30] animate-ping"></span>
+                PUSAT LAYANAN DIGITAL, PERCETAKAN &amp; KOMPUTER TERLENGKAP
+              </div>
+</div>
+<!-- Chrome/Gradient Hero Headline with Typewriter -->
+<div class="anim-slide-up space-y-1">
+<h1 class="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.92] brand-title-gradient">
+                SYAUQI<br><span class="text-slate-900">COMPUTER</span>
+</h1>
+<div class="pt-3 text-lg md:text-2xl font-semibold text-slate-700 flex items-center min-h-[2.5rem]">
+<span class="text-[#008899]" id="typewriter-text">Instalasi &amp; Servis Jaringan</span>
+<span class="typewriter-cursor"></span>
+</div>
+</div>
+<!-- Description -->
+<p class="anim-slide-up text-slate-600 text-sm md:text-base max-w-xl font-normal leading-relaxed">
+              Mitra terpercaya kebutuhan cetak cepat, alat tulis &amp; perlengkapan sekolah, desain kreatif, reparasi jaringan kantor/sekolah, hingga pelatihan keterampilan komputer profesional bersertifikat.
+            </p>
+<!-- Action Buttons (CTA) -->
+<div class="anim-slide-up flex flex-wrap items-center gap-3.5 pt-1">
+<button class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#008899] to-[#2FA4A9] text-white font-bold text-xs tracking-wide shadow-pill hover:shadow-teal-400/50 hover:translate-y-[-2px] active:scale-95 transition-all flex items-center gap-2 cursor-pointer" onclick="goToSlide(2)">
+<span class="">LIHAT SEMUA LAYANAN</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-down" aria-hidden="true" class="lucide lucide-arrow-down w-4 h-4"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+</button>
+<a class="px-6 py-3.5 rounded-2xl glass-panel text-[#FF7A30] font-bold text-xs hover:bg-white hover:text-[#e06520] hover:translate-y-[-2px] active:scale-95 transition-all flex items-center gap-2 border border-orange-200 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" aria-hidden="true" class="lucide lucide-message-circle w-4 h-4 text-[#FF7A30]"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
+<span class="">HUBUNGI VIA WHATSAPP</span>
+</a>
+</div>
+<!-- Stats Counter Cards -->
+<div class="anim-slide-up grid grid-cols-4 gap-3 pt-3 max-w-xl">
+<div class="glass-card p-3 rounded-2xl text-center border-t-2 border-t-[#008899]">
+<div class="text-xs text-[#008899] mb-1 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" aria-hidden="true" class="lucide lucide-users w-4 h-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+<div class="font-display font-extrabold text-xl text-slate-800">20+</div>
+<div class="text-[10px] text-slate-500 font-medium leading-tight">Pelanggan &amp; Pelajar</div>
+</div>
+<div class="glass-card p-3 rounded-2xl text-center border-t-2 border-t-[#FF7A30]">
+<div class="text-xs text-[#FF7A30] mb-1 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="printer" aria-hidden="true" class="lucide lucide-printer w-4 h-4"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg></div>
+<div class="font-display font-extrabold text-xl text-slate-800">10+</div>
+<div class="text-[10px] text-slate-500 font-medium leading-tight">Layanan Digital</div>
+</div>
+<div class="glass-card p-3 rounded-2xl text-center border-t-2 border-t-[#008899]">
+<div class="text-xs text-[#008899] mb-1 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-check" aria-hidden="true" class="lucide lucide-check-check w-4 h-4"><path d="M18 6 7 17l-5-5"></path><path d="m22 10-7.5 7.5L13 16"></path></svg></div>
+<div class="font-display font-extrabold text-xl text-slate-800">100%</div>
+<div class="text-[10px] text-slate-500 font-medium leading-tight">Kualitas &amp; Cepat</div>
+</div>
+<div class="glass-card p-3 rounded-2xl text-center border-t-2 border-t-[#FF7A30]">
+<div class="text-xs text-[#FF7A30] mb-1 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div>
+<div class="font-display font-extrabold text-xl text-slate-800">24/7</div>
+<div class="text-[10px] text-slate-500 font-medium leading-tight">Order Online</div>
+</div>
+</div>
+</div>
+<!-- Right Hero Glass Card: Syauqi Com Logo & Identity Presentation -->
+<div class="lg:col-span-5 flex justify-center items-center relative anim-slide-left">
+<div class="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl glass-panel p-6 shadow-glass-lg overflow-hidden flex flex-col justify-between group border border-white">
+<!-- Background Ambient Gradient Inside Card -->
+<div class="absolute -top-16 -right-16 w-56 h-56 bg-orange-100 rounded-full blur-3xl opacity-70"></div>
+<div class="absolute -bottom-16 -left-16 w-56 h-56 bg-teal-100 rounded-full blur-3xl opacity-70"></div>
+<!-- Holographic Badge floating top -->
+<div class="flex items-center justify-between z-10">
+<div class="px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 text-[11px] font-bold text-[#008899] flex items-center gap-1.5 shadow-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" aria-hidden="true" class="lucide lucide-sparkles w-3.5 h-3.5 text-[#FF7A30]"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+                  One-Stop Solution
+                </div>
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center p-1 border border-teal-200/60 shadow-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="award" aria-hidden="true" class="lucide lucide-award w-5 h-5 text-[#FF7A30]"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+</div>
+</div>
+<!-- Central Brand Visual (Official Logo) -->
+<div class="relative z-10 flex flex-col items-center justify-center my-auto p-4">
+<div class="relative w-44 h-44 rounded-3xl bg-white p-3 shadow-glass flex items-center justify-center border-2 border-teal-50 group-hover:scale-105 transition-transform duration-500">
+<img alt="Syauqi Com Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8fVv5Dr8E6iaBwcqr4dJd_JbdU7hz71M7vw9xI7KfbSMyI1gUWljkpPLTFMInJTCccNWvpCvJ1ImRrujf7WxerlMZs-0J5JswCI-57WKzeH8HDc7I_CiOX6itSRV9f6zUjC1eZ3LkFLXHl4Vhd4LPiqXnDEE0-Q7iK2WpApSzMfEV0z6DENE_uZJ_T-Q3IVfIqAs2UbpzGQECs4ocVrWBzMYKDm7f1YHWXHj7ogJ_l694GOyQEXow5N_V9fTagibmfQw">
+<div class="absolute -bottom-3 px-3 py-0.5 rounded-full bg-[#FF7A30] text-white text-[10px] font-extrabold tracking-wider shadow-sm uppercase">
+                    Syauqi Com
+                  </div>
+</div>
+<h3 class="font-display font-extrabold text-xl text-slate-800 mt-5 text-center">FOTOCOPY &amp; COMPUTER</h3>
+<p class="text-xs text-slate-500 text-center mt-0.5">Solusi Cerdas Pelajar, Kantor &amp; Bisnis</p>
+</div>
+<!-- Glass card footer inside hero frame -->
+<div class="relative z-10 glass-card p-3.5 rounded-2xl border border-white/90">
+<div class="flex items-center justify-between">
+<div class="space-y-0.5">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-[#008899]">Layanan Siap Tunggu</span>
+<p class="text-slate-800 text-xs font-bold">Print Skripsi, Brosur &amp; Jilid Kilat</p>
+</div>
+<button class="w-8 h-8 rounded-xl bg-[#008899] hover:bg-[#FF7A30] text-white flex items-center justify-center transition-colors shadow-sm cursor-pointer" onclick="goToSlide(1)" title="Buka Profil">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-4 h-4"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SLIDE 2: TENTANG KAMI, SEJARAH & VISI MISI     -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16" data-index="1">
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-h-[820px]">
+<!-- Left: Profil, Sejarah 4 Fase & Visi-Misi -->
+<div class="lg:col-span-6 anim-slide-left space-y-4 max-h-[750px] overflow-y-auto custom-scroll pr-2">
+<div class="px-3.5 py-1 rounded-full glass-panel text-xs font-bold text-[#008899] tracking-wide inline-flex items-center gap-2 border border-teal-200">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building-2" aria-hidden="true" class="lucide lucide-building-2 w-3.5 h-3.5 text-[#FF7A30]"><path d="M10 12h4"></path><path d="M10 8h4"></path><path d="M14 21v-3a2 2 0 0 0-4 0v3"></path><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path></svg> PROFIL &amp; PERJALANAN KAMI
+</div>
+<h2 class="font-display font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight leading-tight">
+              Dedikasi Nyata Melayani Kebutuhan Digital &amp; Edukasi.
+</h2>
+<p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+<strong>SYAUQI COMPUTER</strong> berawal dari tekad sederhana memberikan akses cetak dan teknologi yang andal dan terjangkau bagi warga Mulya Jaya, Tulang Bawang Barat. Kini bertransformasi menjadi pusat one-stop solusi terpadu digital, percetakan, ATK, serta kursus vokasi komputer.
+</p>
+<!-- 4 Fase Sejarah & Milestone -->
+<div class="space-y-2.5 pt-1">
+<div class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#FF7A30]"></span> Linimasa Perjalanan 4 Fase
+</div>
+<div class="glass-card p-3 rounded-2xl flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-teal-100 text-[#008899] flex items-center justify-center font-bold text-xs shrink-0">1</div>
+<div>
+<h5 class="text-xs font-bold text-slate-800">Fase 1: Langkah Awal (Percetakan &amp; Fotocopy)</h5>
+<p class="text-[11px] text-slate-500 leading-snug">Didirikan melayani fotocopy, jilid dokumen, dan kebutuhan cetak tugas siswa dan instansi sekitar desa Mulya Jaya.</p>
+</div>
+</div>
+<div class="glass-card p-3 rounded-2xl flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-orange-100 text-[#FF7A30] flex items-center justify-center font-bold text-xs shrink-0">2</div>
+<div>
+<h5 class="text-xs font-bold text-slate-800">Fase 2: Toko Alat Tulis Lengkap (Stationery ATK)</h5>
+<p class="text-[11px] text-slate-500 leading-snug">Menambah portofolio penjualan peralatan kantor, buku, kertas HVS grosir/ecer, map snelhecter, dan kebutuhan ujian sekolah.</p>
+</div>
+</div>
+<div class="glass-card p-3 rounded-2xl flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-xs shrink-0">3</div>
+<div>
+<h5 class="text-xs font-bold text-slate-800">Fase 3: Jasa IT, Servis Komputer &amp; Instalasi Jaringan</h5>
+<p class="text-[11px] text-slate-500 leading-snug">Membuka divisi perbaikan hardware laptop/PC, instalasi sistem jaringan kabel LAN, dan integrasi WiFi instansi serta sekolah.</p>
+</div>
+</div>
+<div class="glass-card p-3 rounded-2xl flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-teal-100 text-[#008899] flex items-center justify-center font-bold text-xs shrink-0">4</div>
+<div>
+<h5 class="text-xs font-bold text-slate-800">Fase 4: Divisi Edukasi &amp; Kursus Komputer Bersertifikat</h5>
+<p class="text-[11px] text-slate-500 leading-snug">Menghadirkan program pelatihan Ms Office, desain grafis terapan, dan teknisi jaringan dengan sistem 1 murid 1 PC bersertifikat.</p>
+</div>
+</div>
+</div>
+<!-- Visi & Misi Box -->
+<div class="glass-card p-3.5 rounded-2xl border-l-4 border-l-[#FF7A30] space-y-1 mt-2">
+<h5 class="text-xs font-extrabold text-slate-900 uppercase">Visi &amp; Misi Kami</h5>
+<p class="text-[11px] text-slate-600 leading-relaxed">
+<strong>Visi:</strong> Menjadi program unggul dalam bidang komputer yang inovatif<br>
+<strong>Misi:</strong>&nbsp;Menyelenggarakan pendidikan di luar sekolah dalam bidang komputer,Mengembangkan ilmu komputer kepada peserta didik agar mampu menjadi tenaga yang perfisional</p>
+</div>
+</div>
+<!-- Right: Keunggulan & Fasilitas Toko -->
+<div class="lg:col-span-6 grid grid-cols-1 md:grid-cols-2 gap-4 anim-slide-up">
+<!-- Fasilitas Mesin & Hardware -->
+<div class="glass-panel p-5 rounded-3xl space-y-4 shadow-glass">
+<div class="flex items-center gap-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
+<span class="w-2.5 h-2.5 rounded-full bg-[#008899]"></span> Standar Kecepatan &amp; Kapasitas
+</div>
+<div class="space-y-3 pt-1">
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+<span class="">Kecepatan Cetak &amp; Copy Dokumen</span>
+<span class="font-bold text-[#008899]">98% Cepat</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#008899] to-[#2FA4A9] rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+<span class="">Kelengkapan Alat Tulis &amp; ATK Sekolah</span>
+<span class="font-bold text-[#FF7A30]">95% Lengkap</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#FF7A30] to-orange-400 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+<span class="">Ketepatan Desain Grafis &amp; Setting</span>
+<span class="font-bold text-[#008899]">92% Presisi</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#008899] to-[#2FA4A9] rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+<span class="">Teknisi Perbaikan Komputer &amp; Jaringan</span>
+<span class="font-bold text-[#FF7A30]">94% Tuntas</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#FF7A30] to-orange-400 rounded-full" style="width: 94%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pilar Fasilitas Toko -->
+<div class="glass-panel p-5 rounded-3xl space-y-4 shadow-glass flex flex-col justify-between">
+<div class="flex items-center gap-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF7A30]"></span> Fasilitas Utama Toko
+</div>
+<div class="grid grid-cols-2 gap-2 text-center my-auto">
+<div class="glass-card p-3 rounded-2xl flex flex-col items-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="printer" aria-hidden="true" class="lucide lucide-printer w-5 h-5 text-[#008899] mb-1"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg>
+<span class="font-bold text-slate-800 text-xs">Mesin Digital</span>
+<span class="text-[9px] text-slate-400">High Resolution Copy</span>
+</div>
+<div class="glass-card p-3 rounded-2xl flex flex-col items-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-open" aria-hidden="true" class="lucide lucide-book-open w-5 h-5 text-[#FF7A30] mb-1"><path d="M12 5v16"></path><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"></path></svg>
+<span class="font-bold text-slate-800 text-xs">Stationery ATK</span>
+<span class="text-[9px] text-slate-400">Peralatan Sekolah</span>
+</div>
+<div class="glass-card p-3 rounded-2xl flex flex-col items-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="monitor" aria-hidden="true" class="lucide lucide-monitor w-5 h-5 text-[#FF7A30] mb-1"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+<span class="font-bold text-slate-800 text-xs">Lab Komputer</span>
+<span class="text-[9px] text-slate-400">Ruang Kursus Nyaman</span>
+</div>
+<div class="glass-card p-3 rounded-2xl flex flex-col items-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wifi" aria-hidden="true" class="lucide lucide-wifi w-5 h-5 text-[#008899] mb-1"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.859a10 10 0 0 1 14 0"></path><path d="M8.5 16.429a5 5 0 0 1 7 0"></path></svg>
+<span class="font-bold text-slate-800 text-xs">Alat Jaringan</span>
+<span class="text-[9px] text-slate-400">Router, LAN &amp; Fiber</span>
+</div>
+</div>
+<!-- Motto Quote -->
+<div class="glass-card p-3 rounded-2xl border-l-4 border-l-[#008899]">
+<p class="text-[11px] italic text-slate-600 leading-snug">"Memberikan pelayanan cetak dan solusi digital terpercaya dengan sepenuh hati bagi kemajuan pendidikan dan bisnis."</p>
+<span class="text-[10px] font-bold text-slate-700 block text-right mt-1">— Syauqi Computer</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SLIDE 3: PRODUK & LAYANAN UTAMA                -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16" data-index="2">
+<div class="max-w-7xl w-full mx-auto flex flex-col justify-center h-full max-h-[820px] space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 anim-slide-up">
+<div>
+<div class="px-3.5 py-1 rounded-full glass-panel text-xs font-bold text-[#008899] tracking-wide inline-flex items-center gap-2 border border-teal-200">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="layers" aria-hidden="true" class="lucide lucide-layers w-3.5 h-3.5 text-[#FF7A30]"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg> LAYANAN UNGGULAN SYAUQI COM
+</div>
+<h2 class="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight mt-1">
+                Produk &amp; Layanan Utama
+</h2>
+</div>
+<p class="text-slate-600 text-xs md:text-sm max-w-md">
+              Penyedia layanan percetakan dokumen kilat, penyedia alat tulis sekolah/kantor, jasa desain visual, dan servis instalasi jaringan bergaransi.
+            </p>
+</div>
+<!-- 4 Services Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 anim-slide-up">
+<!-- Card 1 -->
+<div class="glass-card p-5 rounded-3xl flex flex-col justify-between group border border-white hover:border-teal-200 transition-all">
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-2xl bg-teal-100 text-[#008899] flex items-center justify-center group-hover:bg-[#008899] group-hover:text-white transition-colors">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="printer" aria-hidden="true" class="lucide lucide-printer w-5 h-5"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg>
+</div>
+<h4 class="font-display font-bold text-base text-slate-900">Fotocopy &amp; Digital Printing</h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                  Jilid spiral, hardcover skripsi, cetak dokumen warna/hitam putih cepat, cetak brosur, nota kwitansi, piagam sertifikat, dan laminating.
+                </p>
+</div>
+<div class="pt-4 mt-2 border-t border-slate-200/50 flex items-center justify-between">
+<span class="text-[11px] font-bold text-[#008899]">Mulai Rp 500-20.000 / lbr</span>
+<a class="text-xs text-[#FF7A30] hover:text-orange-700 font-bold flex items-center gap-1 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+                  Order <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-3.5 h-3.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-5 rounded-3xl flex flex-col justify-between group border border-white hover:border-orange-200 transition-all">
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-2xl bg-orange-100 text-[#FF7A30] flex items-center justify-center group-hover:bg-[#FF7A30] group-hover:text-white transition-colors">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-open" aria-hidden="true" class="lucide lucide-book-open w-5 h-5"><path d="M12 5v16"></path><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"></path></svg>
+</div>
+<h4 class="font-display font-bold text-base text-slate-900">Peralatan Sekolah &amp; ATK</h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                  Kebutuhan ujian, buku tulis, pena, map snelhecter, kertas HVS berbagai gramatur, kalkulator, gunting, stapler, dan perlengkapan kantor.
+                </p>
+</div>
+<div class="pt-4 mt-2 border-t border-slate-200/50 flex items-center justify-between">
+<span class="text-[11px] font-bold text-[#FF7A30]">Harga Grosir &amp; Ecer</span>
+<a class="text-xs text-[#008899] hover:text-teal-800 font-bold flex items-center gap-1 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+                  Katalog <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-3.5 h-3.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-5 rounded-3xl flex flex-col justify-between group border border-white hover:border-teal-200 transition-all">
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-2xl bg-teal-100 text-[#008899] flex items-center justify-center group-hover:bg-[#008899] group-hover:text-white transition-colors">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="pen-tool" aria-hidden="true" class="lucide lucide-pen-tool w-5 h-5"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"></path><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"></path><path d="m2.3 2.3 7.286 7.286"></path><circle cx="11" cy="11" r="2"></circle></svg>
+</div>
+<h4 class="font-display font-bold text-base text-slate-900">Jasa Desain &amp; Editing</h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                  Desain banner/spanduk acara sekolah, logo usaha, kartu nama, undangan, edit pas foto ijazah/lamaran kerja, serta konversi dokumen PDF.
+                </p>
+</div>
+<div class="pt-4 mt-2 border-t border-slate-200/50 flex items-center justify-between">
+<span class="text-[11px] font-bold text-[#008899]">Desain Cepat</span>
+<a class="text-xs text-[#FF7A30] hover:text-orange-700 font-bold flex items-center gap-1 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+                  Konsultasi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-3.5 h-3.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-5 rounded-3xl flex flex-col justify-between group border border-white hover:border-orange-200 transition-all">
+<div class="space-y-3">
+<div class="w-10 h-10 rounded-2xl bg-orange-100 text-[#FF7A30] flex items-center justify-center group-hover:bg-[#FF7A30] group-hover:text-white transition-colors">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="network" aria-hidden="true" class="lucide lucide-network w-5 h-5"><rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path></svg>
+</div>
+<h4 class="font-display font-bold text-base text-slate-900">Instalasi &amp; Servis Jaringan</h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                  Pemasangan kabel LAN, setting WiFi/Mikrotik lab komputer sekolah, instalasi Windows &amp; aplikasi kantor, servis laptop lambat/error.
+                </p>
+</div>
+<div class="pt-4 mt-2 border-t border-slate-200/50 flex items-center justify-between">
+<span class="text-[11px] font-bold text-[#FF7A30]">Panggilan / Di Toko</span>
+<a class="text-xs text-[#008899] hover:text-teal-800 font-bold flex items-center gap-1 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+                  Panggil <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-3.5 h-3.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Bottom Banner Call to Action -->
+<div class="glass-panel p-4 rounded-3xl flex items-center justify-between anim-slide-up">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-r from-[#008899] to-[#FF7A30] text-white flex items-center justify-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" aria-hidden="true" class="lucide lucide-sparkles w-5 h-5"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+</div>
+<div>
+<div class="text-xs font-bold text-slate-800">Order Dokumen Lewat WhatsApp Tanpa Antre</div>
+<div class="text-[11px] text-slate-500">Kirim file PDF/Word Anda sekarang, kami cetak dan jilid langsung siap ambil di toko!</div>
+</div>
+</div>
+<a class="px-5 py-2.5 rounded-xl bg-[#008899] hover:bg-[#FF7A30] text-white text-xs font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+              Kirim File Cetak
+            </a>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SLIDE 4: KURSUS KOMPUTER & EDUKASI             -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16" data-index="3">
+<div class="max-w-7xl w-full mx-auto flex flex-col justify-center h-full max-h-[820px] space-y-6">
+<div class="text-center max-w-2xl mx-auto space-y-2 anim-slide-up">
+<div class="px-3.5 py-1 rounded-full glass-panel text-xs font-bold text-[#008899] tracking-wide inline-flex items-center gap-2 border border-teal-200">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="graduation-cap" aria-hidden="true" class="lucide lucide-graduation-cap w-3.5 h-3.5 text-[#FF7A30]"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg> PUSAT PELATIHAN &amp; KURSUS RESMI
+</div>
+<h2 class="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight">
+              Kursus Komputer Bersertifikat
+</h2>
+<p class="text-slate-600 text-xs md:text-sm">
+              Program bimbingan praktis dari dasar sampai mahir untuk pelajar, pencari kerja, staf instansi, dan masyarakat umum.
+            </p>
+</div>
+<!-- 3 Program Belajar Unggulan -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 anim-slide-up">
+<!-- Program 1 -->
+<div class="glass-panel p-6 rounded-3xl space-y-4 hover:shadow-glass-lg transition-all border border-white group">
+<div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#008899] to-cyan-400 text-white flex items-center justify-center shadow-md shadow-teal-500/20 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-spreadsheet" aria-hidden="true" class="lucide lucide-file-spreadsheet w-6 h-6"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M8 13h2"></path><path d="M14 13h2"></path><path d="M8 17h2"></path><path d="M14 17h2"></path></svg>
+</div>
+<h3 class="font-display font-bold text-lg text-slate-900">Microsoft Office Siap Kerja</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+                Kuasai Ms Word untuk penyusunan laporan rapi, Ms Excel rumus administrasi kerja (VLOOKUP, IF, PivotTable), dan Ms PowerPoint presentasi profesional.
+              </p>
+<div class="pt-2">
+<span class="text-[11px] font-bold text-[#008899] flex items-center gap-1">
+                  Untuk Pelajar &amp; Karyawan Kantor <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-3.5 h-3.5"><path d="m9 18 6-6-6-6"></path></svg>
+</span>
+</div>
+</div>
+<!-- Program 2 -->
+<div class="glass-panel p-6 rounded-3xl space-y-4 hover:shadow-glass-lg transition-all border border-white group">
+<div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#FF7A30] to-orange-400 text-white flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="palette" aria-hidden="true" class="lucide lucide-palette w-6 h-6"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
+</div>
+<h3 class="font-display font-bold text-lg text-slate-900">Desain Grafis &amp; Kreatif</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+                Belajar membuat konten media sosial, brosur promosi, poster acara, editing foto produk menggunakan aplikasi Canva, Photoshop, dan CorelDraw praktis.
+              </p>
+<div class="pt-2">
+<span class="text-[11px] font-bold text-[#FF7A30] flex items-center gap-1">
+                  Peluang Freelance &amp; Wirausaha <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-3.5 h-3.5"><path d="m9 18 6-6-6-6"></path></svg>
+</span>
+</div>
+</div>
+<!-- Program 3 -->
+<div class="glass-panel p-6 rounded-3xl space-y-4 hover:shadow-glass-lg transition-all border border-white group">
+<div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#00626e] to-[#008899] text-white flex items-center justify-center shadow-md shadow-teal-700/20 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" aria-hidden="true" class="lucide lucide-cpu w-6 h-6"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg>
+</div>
+<h3 class="font-display font-bold text-lg text-slate-900">Dasar Komputer &amp; Jaringan</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+                Pengenalan hardware, instalasi sistem operasi, troubleshooting problem laptop lambat, konfigurasi jaringan kabel LAN dan WiFi router sederhana.
+              </p>
+<div class="pt-2">
+<span class="text-[11px] font-bold text-teal-800 flex items-center gap-1">
+                  Keterampilan Teknisi Pemula <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-3.5 h-3.5"><path d="m9 18 6-6-6-6"></path></svg>
+</span>
+</div>
+</div>
+</div>
+<!-- Keuntungan Belajar di Syauqi Com Box -->
+<div class="glass-card p-4 rounded-3xl flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto w-full anim-slide-up">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-white flex items-center justify-center shadow-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle-2" aria-hidden="true" class="lucide lucide-check-circle-2 w-5 h-5 text-[#FF7A30]"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>
+</div>
+<div>
+<h5 class="text-xs font-bold text-slate-800">Fasilitas Kursus: Praktik 1 Komputer 1 Siswa + Sertifikat</h5>
+<p class="text-[11px] text-slate-500">Jadwal fleksibel (Pagi / Sore / Akhir Pekan) dengan instruktur sabar dan berpengalaman.</p>
+</div>
+</div>
+<a class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#FF7A30] text-white text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+<span class="">Daftar Kursus Sekarang</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3.5 h-3.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+</a>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SLIDE 5: PORTOFOLIO / KARYA & DAFTAR HARGA     -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16" data-index="4">
+<div class="max-w-7xl w-full mx-auto flex flex-col justify-center h-full max-h-[820px] space-y-6">
+<div class="flex items-center justify-between anim-slide-up">
+<div>
+<div class="px-3.5 py-1 rounded-full glass-panel text-xs font-bold text-[#008899] tracking-wide inline-flex items-center gap-2 border border-teal-200">
+<span class="w-2 h-2 rounded-full bg-[#FF7A30]"></span> GALERI HASIL KARYA &amp; DAFTAR HARGA
+</div>
+<h2 class="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight mt-1">
+                Karya Pilihan &amp; Estimasi Biaya
+</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-medium">Bahan Baku Terbaik &amp; Pengerjaan Rapi</span>
+</div>
+</div>
+<!-- 3 Case Study / Service Showcase Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 anim-slide-up">
+<!-- Card 01 -->
+<div class="glass-card p-4 rounded-3xl space-y-3 group border border-white hover:border-teal-200 transition-all">
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-teal-900/10 flex items-center justify-center p-6">
+<div class="w-16 h-16 rounded-2xl bg-teal-50 text-[#008899] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-check" aria-hidden="true" class="lucide lucide-book-check w-8 h-8"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path><path d="m9 9.5 2 2 4-4"></path></svg>
+</div>
+<div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold">
+                  01
+                </div>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-teal-200 font-mono tracking-wider font-bold">JILID HARDCOVER &amp; SKRIPSI</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-display font-bold text-base text-slate-900">Penjilidan Skripsi &amp; Dokumen Dinas</h4>
+<p class="text-xs text-slate-500 line-clamp-2">Pilihan jilid skripsi tulisan emas (hotprint embossed), spiral kawat rapi, jilid lakban plastik untuk laporan sekolah dan proposal instansi.</p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Presisi Rapi</span>
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Tahan Lama</span>
+</div>
+<span class="text-xs font-bold text-[#008899]">Rp 5.000</span>
+</div>
+</div>
+</div>
+<!-- Card 02 -->
+<div class="glass-card p-4 rounded-3xl space-y-3 group border border-white hover:border-orange-200 transition-all">
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-orange-900/10 flex items-center justify-center p-6">
+<div class="w-16 h-16 rounded-2xl bg-orange-50 text-[#FF7A30] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="image" aria-hidden="true" class="lucide lucide-image w-8 h-8"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+</div>
+<div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold">
+                  02
+                </div>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-orange-200 font-mono tracking-wider font-bold">CETAK BROSUR &amp; SPANDUK</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-display font-bold text-base text-slate-900">Desain Grafis &amp; Promosi Usaha</h4>
+<p class="text-xs text-slate-500 line-clamp-2">Cetak banner flexi outdoor tahan hujan/panas, stiker label kemasan makanan, kartu nama bisnis tajam, dan selebaran promosi.</p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Full Color</span>
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Bisa Custom</span>
+</div>
+<span class="text-xs font-bold text-[#FF7A30]">Rp 20.000/m</span>
+</div>
+</div>
+</div>
+<!-- Card 03 -->
+<div class="glass-card p-4 rounded-3xl space-y-3 group border border-white hover:border-teal-200 transition-all">
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-cyan-900/10 flex items-center justify-center p-6">
+<div class="w-16 h-16 rounded-2xl bg-teal-50 text-[#008899] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="server" aria-hidden="true" class="lucide lucide-server w-8 h-8"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+</div>
+<div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold">
+                  03
+                </div>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-teal-200 font-mono tracking-wider font-bold">SETUP LAB &amp; JARINGAN</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-display font-bold text-base text-slate-900">Instalasi Laboratorium Sekolah</h4>
+<p class="text-xs text-slate-500 line-clamp-2">Pengkabelan rapi, konfigurasi router Mikrotik, pembagian bandwidth internet stabil untuk simulasi ujian nasional/ANBK sekolah.</p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Teknisi Andal</span>
+<span class="px-2.5 py-0.5 rounded-full glass-panel text-[10px] font-medium text-slate-600">Garansi</span>
+</div>
+<span class="text-xs font-bold text-[#008899]">Sesuai Spek</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Client / Student Satisfaction Ribbon -->
+<div class="glass-panel p-4 rounded-3xl flex items-center justify-between gap-4 anim-slide-up">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-orange-100 text-[#FF7A30] flex items-center justify-center font-bold">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="smile" aria-hidden="true" class="lucide lucide-smile w-5 h-5"><path d="M15 10V9"></path><path d="M16.472 15a6 6 0 01-8.943 0"></path><path d="M9 10V9"></path><circle cx="12" cy="12" r="10"></circle></svg>
+</div>
+<div class="text-xs text-slate-700">
+<span class="font-bold text-slate-900">Pelayanan Cepat &amp; Ramah</span> — Pilihan utama ratusan pelajar sekolah &amp; kantor sekitar untuk kebutuhan harian.
+              </div>
+</div>
+<button class="text-xs text-[#008899] font-bold hover:underline flex items-center gap-1 cursor-pointer" onclick="goToSlide(5)">
+              Hubungi Lokasi Toko Kami →
+            </button>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- SLIDE 6: KONTAK & LOKASI TOKO                  -->
+<!-- ============================================== -->
+<section class="slide-section flex items-center justify-center px-6 pt-20 pb-16" data-index="5">
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center h-full max-h-[820px]">
+<!-- Left Contact Box -->
+<div class="lg:col-span-5 anim-slide-left space-y-4">
+<div>
+<div class="px-3.5 py-1 rounded-full glass-panel text-xs font-bold text-[#008899] tracking-wide inline-flex items-center gap-2 border border-teal-200">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-3.5 h-3.5 text-[#FF7A30]"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> KUNJUNGI KAMI ATAU ORDER ONLINE
+</div>
+<h2 class="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight mt-2 leading-[1.1]">
+                HUBUNGI<br><span class="brand-title-gradient">SYAUQI COMPUTER</span>
+</h2>
+<p class="text-slate-600 text-xs md:text-sm mt-2.5 leading-relaxed">
+                Butuh fotocopy cepat ratusan lembar, perlengkapan ATK sekolah, perbaikan laptop/jaringan, atau mau mendaftar kursus komputer? Kami siap melayani Anda!
+              </p>
+</div>
+<div class="pt-1 flex flex-wrap gap-3">
+<a class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#008899] to-[#FF7A30] text-white font-bold text-xs shadow-pill hover:shadow-orange-500/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+<span class="">CHAT VIA WHATSAPP</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" aria-hidden="true" class="lucide lucide-message-circle w-4 h-4"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
+</a>
+<a class="px-6 py-3.5 rounded-2xl glass-panel text-slate-700 font-semibold text-xs hover:bg-white hover:text-[#008899] transition-all flex items-center gap-2 cursor-pointer border border-slate-200" href="mailto:syauqicomputer@gmail.com">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" aria-hidden="true" class="lucide lucide-mail w-4 h-4 text-[#008899]"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+<span class="">Kirim Email</span>
+</a>
+</div>
+<!-- Social media / platform pills -->
+<div class="flex items-center gap-2 pt-1">
+<a class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 hover:text-[#FF7A30] transition-colors cursor-pointer" href="https://www.tiktok.com/@syryzen?_r=1&amp;_t=ZS-99f31jazjrJ" rel="noopener noreferrer" target="_blank" title="TikTok Syauqi / @syryzen"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.93 4.93 0 0 1-2-1.9v-.1z"></path></svg></a>
+<a class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 hover:text-[#008899] transition-colors cursor-pointer" href="javascript:void(0)" onclick="goToSlide(0)" title="Beranda">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="globe" aria-hidden="true" class="lucide lucide-globe w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+</a>
+<a class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 hover:text-[#FF7A30] transition-colors cursor-pointer" href="https://www.instagram.com/_byusyauqi_?stkn=MWt3bXA2OHk2OWl6Zw==" rel="noopener noreferrer" target="_blank" title="Instagram">
+<svg aria-hidden="true" class="lucide lucide-instagram w-4 h-4" data-lucide="instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+<a class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 hover:text-[#008899] transition-colors cursor-pointer" href="https://maps.app.goo.gl/HGWwAUyV9rYwx7rb6" rel="noopener noreferrer" target="_blank" title="Peta Lokasi">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map" aria-hidden="true" class="lucide lucide-map w-4 h-4"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+</a>
+</div>
+</div>
+<!-- Middle: Contact Details Panel -->
+<div class="lg:col-span-4 anim-slide-up space-y-4">
+<div class="glass-panel p-5 rounded-3xl space-y-3.5 shadow-glass">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Informasi Kontak &amp; Jam Buka</h4>
+<div class="space-y-2.5">
+<!-- Alamat Toko -->
+<div class="flex items-center gap-3 p-3 rounded-2xl glass-card">
+<div class="w-8 h-8 rounded-xl bg-teal-100 text-[#008899] flex items-center justify-center flex-shrink-0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-4 h-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+</div>
+<div>
+<div class="text-[10px] text-slate-400">Lokasi Toko</div>
+<div class="text-xs font-semibold text-slate-800">Jl.Poros, Mulya Jaya, Kec. Gunung Agung, <div class="">Kab. Tulang Bawang Barat</div></div>
+</div>
+</div>
+<!-- Jam Operasional -->
+<div class="flex items-center gap-3 p-3 rounded-2xl glass-card">
+<div class="w-8 h-8 rounded-xl bg-orange-100 text-[#FF7A30] flex items-center justify-center flex-shrink-0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+</div>
+<div>
+<div class="text-[10px] text-slate-400">Jam Operasional Toko</div>
+<div class="text-xs font-semibold text-slate-800">Buka Setiap Hari (08.30 - 21.00 WIB)</div>
+</div>
+</div>
+<!-- WhatsApp Direct -->
+<div class="flex items-center gap-3 p-3 rounded-2xl glass-card">
+<div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-square" aria-hidden="true" class="lucide lucide-message-square w-4 h-4"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path></svg>
+</div>
+<div>
+<div class="text-[10px] text-slate-400">WhatsApp / Layanan Cepat</div>
+<div class="text-xs font-semibold text-slate-800">0857-8342-3540</div>
+</div>
+</div>
+<!-- Kursus & Konsultasi -->
+<div class="flex items-center gap-3 p-3 rounded-2xl glass-card">
+<div class="w-8 h-8 rounded-xl bg-teal-100 text-[#008899] flex items-center justify-center flex-shrink-0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="graduation-cap" aria-hidden="true" class="lucide lucide-graduation-cap w-4 h-4"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+</div>
+<div>
+<div class="text-[10px] text-slate-400">Layanan Kursus &amp; Jaringan</div>
+<div class="text-xs font-semibold text-slate-800">Pendaftaran Buka Setiap Hari</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Interactive QR Code & Brand Badge -->
+<div class="lg:col-span-3 anim-slide-up flex flex-col items-center justify-center space-y-4">
+<div class="glass-panel p-5 rounded-3xl shadow-glass flex flex-col items-center text-center space-y-3 w-full max-w-[280px]">
+<span class="text-[10px] font-extrabold text-[#008899] uppercase tracking-wider">ORDER KILAT TANPA ANTRI</span>
+<p class="text-[11px] text-slate-500">Pindai QR ini via WhatsApp untuk langsung mengirim dokumen cetak Anda.</p>
+<!-- Stylized QR Code with Brand Logo in Center -->
+<a class="p-3 bg-white rounded-2xl shadow-sm border border-slate-200/80 flex items-center justify-center relative cursor-pointer group" href="https://wa.me/message/MGHCH6LXY34NG1" rel="noopener noreferrer" target="_blank">
+<div class="w-32 h-32 relative rounded-xl overflow-hidden group-hover:scale-105 transition-transform flex items-center justify-center"><img alt="WhatsApp QR Code Syauqi Computer" class="w-full h-full object-contain rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlydDky4QMpxdMwWG0OlXQ5WsHO6obnbBBzd00bKPrlRchwULeQuOslZ01HXpJjpaIdlkXm-iXmm5yPT0PviKMOg2uGauKpn3pciBqXirYP-kuSy598ui-A0OcwvMZgxs_ztvWtstrLBGH3JuijXmT_YGwHrx0r3gJiftMkk89l2NAHIV33ZiI6O5g_rexRTde9Rip8tWujSeFGTU7nn9fWERI5SBZrqaxqy8BBm2VOoP0eH2UzNpKUVDLCGm7E4XNiPQ"></div>
+</a>
+<span class="text-[10px] font-mono text-slate-500">Klik QR / Scan via Kamera</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FIXED BOTTOM FOOTER BAR -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 px-6 py-3 flex items-center justify-between text-[11px] text-slate-500 pointer-events-none">
+<div class="max-w-7xl w-full mx-auto flex items-center justify-between pointer-events-auto">
+<div class="">© 2026 SYAUQI COMPUTER. Hak Cipta Dilindungi.</div>
+<div class="flex items-center gap-1.5 text-slate-600 font-medium">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mouse-pointer" aria-hidden="true" class="lucide lucide-mouse-pointer w-3.5 h-3.5 text-[#008899]"><path d="M12.586 12.586 19 19"></path><path d="M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z"></path></svg>
+<span class="">Gunakan Scroll Mouse atau Tombol Panah (↑ / ↓)</span>
+</div>
+<div class="font-mono tracking-wider text-[#FF7A30] font-bold uppercase text-[10px]">
+        SYAUQI COM • FOTOCOPY &amp; COMPUTER SERVICES
+      </div>
+</div>
+</footer>
+<!-- JAVASCRIPT: SLIDE CONTROLLER, TYPEWRITER & ANIMATIONS -->
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // GLOBAL SLIDER STATE
+    let currentSlide = 0;
+    const totalSlides = 6;
+    let isTransitioning = false;
+    const slidesTrack = document.getElementById('slides-track');
+    const slideSections = document.querySelectorAll('.slide-section');
+    const navItems = document.querySelectorAll('.nav-item');
+    const indicatorDots = document.querySelectorAll('.indicator-dot');
+
+    // Slide transition function
+    function goToSlide(targetIndex) {
+      if (typeof targetIndex !== 'number' || targetIndex < 0 || targetIndex >= totalSlides) {
+        return;
+      }
+
+      currentSlide = targetIndex;
+      isTransitioning = true;
+
+      // Transform slides track
+      slidesTrack.style.transform = `translateY(-${currentSlide * 100}vh)`;
+
+      // Update Active Slide Classes
+      slideSections.forEach((section, idx) => {
+        if (idx === currentSlide) {
+          section.classList.add('section-active');
+        } else {
+          section.classList.remove('section-active');
+        }
+      });
+
+      // Update Nav Buttons
+      navItems.forEach((btn) => {
+        const idx = parseInt(btn.getAttribute('data-slide'), 10);
+        if (idx === currentSlide) {
+          btn.className = 'nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 bg-[#008899] text-white shadow-sm';
+        } else {
+          btn.className = 'nav-item px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 text-slate-600 hover:text-[#008899] hover:bg-white/60';
+        }
+      });
+
+      // Update Indicator Dots
+      indicatorDots.forEach((dot) => {
+        const idx = parseInt(dot.getAttribute('data-slide'), 10);
+        if (idx === currentSlide) {
+          dot.className = 'indicator-dot w-2.5 h-2.5 rounded-full transition-all duration-300 bg-[#008899] scale-125 cursor-pointer';
+        } else {
+          dot.className = 'indicator-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 cursor-pointer';
+        }
+      });
+
+      setTimeout(() => {
+        isTransitioning = false;
+        lucide.createIcons();
+      }, 650);
+    }
+
+    // Attach click listeners to all nav elements
+    navItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slideIndex = parseInt(item.getAttribute('data-slide'), 10);
+        goToSlide(slideIndex);
+      });
+    });
+
+    indicatorDots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slideIndex = parseInt(dot.getAttribute('data-slide'), 10);
+        goToSlide(slideIndex);
+      });
+    });
+
+    // Ensure on initial load Beranda (slide 0) is explicitly set & active
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+    window.addEventListener('load', () => {
+      goToSlide(0);
+    });
+
+    // Dynamic Typewriter Configuration
+    const typewriterElement = document.getElementById('typewriter-text');
+    const typewriterPhrases = [
+      "Fotocopy & Print Cepat",
+      "Peralatan Sekolah & ATK",
+      "Kursus Komputer Bersertifikat",
+      "Instalasi & Servis Jaringan",
+      "Desain Grafis & Cetak Brosur"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 75;
+
+    function handleTypewriter() {
+      if (!typewriterElement) return;
+      const currentPhrase = typewriterPhrases[phraseIndex];
+      
+      if (isDeleting) {
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = 35;
+      } else {
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 75;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typeSpeed = 1600;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % typewriterPhrases.length;
+        typeSpeed = 350;
+      }
+
+      setTimeout(handleTypewriter, typeSpeed);
+    }
+    handleTypewriter();
+
+    // Mouse Wheel Scroll with smooth debounce
+    let lastWheelTime = 0;
+    window.addEventListener('wheel', (e) => {
+      const now = Date.now();
+      if (now - lastWheelTime < 600 || isTransitioning) {
+        return;
+      }
+
+      if (e.deltaY > 25) {
+        if (currentSlide < totalSlides - 1) {
+          lastWheelTime = now;
+          goToSlide(currentSlide + 1);
+        }
+      } else if (e.deltaY < -25) {
+        if (currentSlide > 0) {
+          lastWheelTime = now;
+          goToSlide(currentSlide - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Keyboard Arrow navigation
+    window.addEventListener('keydown', (e) => {
+      if (isTransitioning) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        if (currentSlide < totalSlides - 1) {
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+        }
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        if (currentSlide > 0) {
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+        }
+      }
+    });
+
+    // Touch Swipe Navigation for mobile & tablet
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (isTransitioning) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffY = touchStartY - touchEndY;
+
+      if (Math.abs(diffY) > 50) {
+        if (diffY > 0 && currentSlide < totalSlides - 1) {
+          goToSlide(currentSlide + 1);
+        } else if (diffY < 0 && currentSlide > 0) {
+          goToSlide(currentSlide - 1);
+        }
+      }
+    }, { passive: true });
+  </script>
+
+
+
+
+
+
+</body></html>
